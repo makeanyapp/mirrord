@@ -173,6 +173,12 @@ where
         pod.labels_mut().extend(labels.clone());
         pod.annotations_mut().extend(annotations.clone());
 
+        if let Some(pod_scheduler_name) = &config.pod_scheduler_name {
+            let mut pod_spec = pod.spec.unwrap_or_default();
+            pod_spec.scheduler_name = Some(pod_scheduler_name.to_owned());
+            pod.spec = Some(pod_spec);
+        }
+
         Job {
             metadata: ObjectMeta {
                 name: Some(params.name.clone()),

@@ -116,6 +116,12 @@ pub struct AgentConfig {
     #[config(env = "MIRRORD_AGENT_NAMESPACE")]
     pub namespace: Option<String>,
 
+    /// ### agent.pod_scheduler_name {#agent-pod_scheduler_name}
+    ///
+    /// Name of pod scheduler to use for the agent pod.
+    #[config(env = "MIRRORD_AGENT_POD_SCHEDULER_NAME")]
+    pub pod_scheduler_name: Option<String>,
+
     /// ### agent.image {#agent-image}
     ///
     /// Name of the agent's docker image.

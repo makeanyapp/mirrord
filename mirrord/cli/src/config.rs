@@ -135,6 +135,9 @@ pub(super) struct ExecParams {
     #[arg(short = 'a', long)]
     pub agent_namespace: Option<String>,
 
+    #[arg(long)]
+    pub agent_pod_scheduler_name: Option<String>,
+
     /// Agent log level
     #[arg(short = 'l', long)]
     pub agent_log_level: Option<String>,
@@ -243,6 +246,10 @@ impl ExecParams {
 
         if let Some(namespace) = &self.agent_namespace {
             envs.insert("MIRRORD_AGENT_NAMESPACE".into(), namespace.into());
+        }
+
+        if let Some(pod_scheduler_name) = &self.agent_pod_scheduler_name {
+            envs.insert("MIRRORD_AGENT_POD_SCHEDULER_NAME".into(), pod_scheduler_name.into());
         }
 
         if let Some(log_level) = &self.agent_log_level {
